@@ -16,8 +16,6 @@ import (
 	"github.com/aws/smithy-go"
 )
 
-// snippet-end:[ec2.go-v2.StartInstances]
-
 // EC2StopInstancesAPI defines the interface for the StopInstances function.
 // We use this interface to test the function using a mocked service.
 type EC2StopInstancesAPI interface {
