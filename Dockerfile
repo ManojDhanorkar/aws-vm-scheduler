@@ -9,7 +9,7 @@ LABEL name="awsvmscheduler" \
     summary="This service enables AWS cloud vm start/stop." \
     description="This service enables AWS cloud vm start/stop."
 
-ENV ec2_instanceIDs "dummy-ids"
+ENV ec2_instanceIds "dummy-ids"
 
 ENV ec2_command "start"
 
@@ -22,4 +22,4 @@ RUN go mod download
 
 RUN go build -o awsvmscheduler
 
-CMD ["sh", "-c", "./awsvmscheduler -c  $ec2_command -i $ec2_instanceIDs "]
+CMD ["sh", "-c", "./awsvmscheduler -c  $ec2_command -i $ec2_instanceIds "]

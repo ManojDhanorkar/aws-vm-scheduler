@@ -48,7 +48,7 @@ func StopInstances(c context.Context, api EC2StopInstancesAPI, input *ec2.StopIn
 	return resp, err
 }
 
-func StopInstancesCmd(instanceIDs []string) {
+func StopInstancesCmd(instanceIds []string) {
 
 	cfg, err := config.LoadDefaultConfig(context.TODO())
 	if err != nil {
@@ -58,7 +58,7 @@ func StopInstancesCmd(instanceIDs []string) {
 	client := ec2.NewFromConfig(cfg)
 
 	input := &ec2.StopInstancesInput{
-		InstanceIds: instanceIDs,
+		InstanceIds: instanceIds,
 		DryRun:      aws.Bool(true),
 	}
 
@@ -69,7 +69,7 @@ func StopInstancesCmd(instanceIDs []string) {
 		return
 	}
 
-	fmt.Println("Stopped instances with IDs " + strings.Join(instanceIDs, ","))
+	fmt.Println("Stopped instances with IDs " + strings.Join(instanceIds, ","))
 }
 
 // snippet-end:[ec2.go-v2.StopInstances]
@@ -106,7 +106,7 @@ func StartInstances(c context.Context, api EC2StartInstancesAPI, input *ec2.Star
 	return resp, err
 }
 
-func StartInstancesCmd(instanceIDs []string) {
+func StartInstancesCmd(instanceIds []string) {
 
 	cfg, err := config.LoadDefaultConfig(context.TODO())
 	if err != nil {
@@ -116,7 +116,7 @@ func StartInstancesCmd(instanceIDs []string) {
 	client := ec2.NewFromConfig(cfg)
 
 	input := &ec2.StartInstancesInput{
-		InstanceIds: instanceIDs,
+		InstanceIds: instanceIds,
 		DryRun:      aws.Bool(true),
 	}
 
@@ -127,7 +127,7 @@ func StartInstancesCmd(instanceIDs []string) {
 		return
 	}
 
-	fmt.Println("Started instances with IDs " + strings.Join(instanceIDs, ","))
+	fmt.Println("Started instances with IDs " + strings.Join(instanceIds, ","))
 }
 
 // snippet-end:[ec2.go-v2.StartInstances]
@@ -135,11 +135,11 @@ func StartInstancesCmd(instanceIDs []string) {
 func main() {
 
 	command := flag.String("c", "", "command  start or stop")
-	instanceIDs := flag.String("i", "", "The comma separated IDs of the instances to start/stop")
+	instanceIds := flag.String("i", "", "The comma separated IDs of the instances to start/stop")
 
 	flag.Parse()
 
-	if *instanceIDs == "" {
+	if *instanceIds == "" {
 		fmt.Println("You must supply an instance ID (-i INSTANCE-ID or comma separated list of ids")
 		return
 	}
@@ -149,7 +149,7 @@ func main() {
 		return
 	}
 
-	instances := strings.Split(*instanceIDs, ",")
+	instances := strings.Split(*instanceIds, ",")
 
 	if *command == "stop" {
 		StopInstancesCmd(instances)
