@@ -13,8 +13,6 @@ ENV ec2_instanceIds "dummy-ids"
 
 ENV ec2_command "start"
 
-ENV region "us-east-1"
-
 # copy code to the build path
 COPY . .
 
